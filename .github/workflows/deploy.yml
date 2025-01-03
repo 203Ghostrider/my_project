@@ -27,3 +27,5 @@ jobs:
           curl -fsSL https://railway.app/install.sh | sh
           railway up .
 
+# This is a minor change to retrigger the workflow
+
