@@ -24,5 +24,6 @@ jobs:
         env:
           RAILWAY_API_KEY: ${{ secrets.RAILWAY_API_KEY }}
         run: |
-          npx railway up --projectPath .
+          curl -fsSL https://railway.app/install.sh | sh
+          railway up --projectPath .
 
