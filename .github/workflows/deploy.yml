@@ -21,8 +21,8 @@ jobs:
         run: npm install
 
       - name: Deploy to Railway
+        env:
+          RAILWAY_API_KEY: ${{ secrets.RAILWAY_API_KEY }}
         run: |
-          npm install -g railway
-          railway login --apiKey ${{ secrets.RAILWAY_API_KEY }}
-          railway up --projectPath .
+          npx railway up --projectPath .
 
