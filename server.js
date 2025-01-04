@@ -60,13 +60,17 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-const path = require('path'); // 既にインポートしていなければ追加
+const path = require('path'); // 必要でなければすでにある部分はそのままにしてください
 
-// 静的ファイルの提供設定
+// 静的ファイルの提供
 app.use(express.static(path.join(__dirname, 'public')));
 
 // その他のリクエストで index.html を返す
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
