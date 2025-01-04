@@ -47,7 +47,8 @@
             resultDiv.textContent = '診断中...';
 
             try {
-                const response = await fetch('http://localhost:3000/dream-diagnosis', {
+                const response = await fetch('https://myproject-production-a88c.up.railway.app/dream-diagnosis', {
+
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
