@@ -1,12 +1,13 @@
-// 必要なパッケージをインポート
+~// 必要なパッケージをインポート
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
+const path = require('path'); // 追加
 
 // Expressアプリケーションのインスタンスを作成
 const app = express();
-const port = process.env.PORT || 9000;
+const port = process.env.PORT || 8080;
 
 
 // ミドルウェアの設定
@@ -70,6 +71,11 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+
+// サーバーを起動
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
