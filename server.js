@@ -64,7 +64,6 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-const path = require('path'); // 必要でなければすでにある部分はそのままにしてください
 
 // 静的ファイルの提供
 app.use(express.static(path.join(__dirname, 'public')));
