@@ -6,7 +6,7 @@ const axios = require('axios');
 
 // Expressアプリケーションのインスタンスを作成
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 
 
 // ミドルウェアの設定
