@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>夢診断サービス</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>夢診断サービス</h1>
+    <form id="dreamForm">
+        <label for="dreamText">夢の内容:</label><br>
+        <textarea id="dreamText" name="dreamText" rows="4" required></textarea><br><br>
+        <button type="submit">診断する</button>
+    </form>
+    <h2>診断結果:</h2>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('dreamForm').addEventListener('submit', async function(e) {
+            e.preventDefault(); // フォームのデフォルト送信を防止
+
+            const dreamText = document.getElementById('dreamText').value;
+            const resultDiv = document.getElementById('result');
+
+            // 結果をクリア
+            resultDiv.textContent = '診断中...';
+
+            try {
+                const response = await fetch('http://localhost:3000/dream-diagnosis', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ dreamText })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    resultDiv.textContent = data.result;
+                } else {
+                    resultDiv.textContent = `エラー: ${data.error}`;
+                }
+            } catch (error) {
+                resultDiv.textContent = `エラー: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
+
